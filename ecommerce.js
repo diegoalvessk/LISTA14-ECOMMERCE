@@ -37,6 +37,9 @@ var avalicao = []
 var indexgeral = 0
 var numeroid = 1
 var buscarid = 0
+var buscarnome = 0
+var idnome = 0
+
 
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
@@ -45,9 +48,21 @@ function Cadastrar(){
     preco[indexgeral] = prompt("Informe o preço do produto.")
     avalicao[indexgeral] = prompt("Informe a avaliação do produto (1 a 5 estrelas).")
     numeroid++
+    indexgeral++
 }
-
 function BuscarId(){
     buscarid = prompt("Qual o id desejado para realizar a busca?")
     alert("ID: " + id[buscarid - 1] + "\n" + "Nome: " + nome[buscarid - 1] + "\n" + "Preço: " + preco[buscarid - 1] + "\n" + "Avaliação: " + avalicao[buscarid - 1])
+}
+
+function BuscarNome(){
+    buscarnome = prompt("Qual o nome desejado para realizar a busca?")
+
+    for (let index = 0; index < indexgeral; index++) {
+        if(buscarnome ==  nome[index]){
+            idnome = index + 1
+        }       
+    }
+
+    alert("ID do produto digitado: " + idnome + "\n" + "Produto digitado: " + buscarnome)
 }
