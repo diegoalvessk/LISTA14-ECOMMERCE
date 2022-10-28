@@ -36,13 +36,18 @@ var preco = []
 var avalicao = []
 var indexgeral = 0
 var numeroid = 1
+var buscarid = 0
 
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
     id[indexgeral] = numeroid
     nome[indexgeral] = prompt("Informe o nome do produto.")
-    preco[indexgeral] = prompt("Informe o nome do produto.")
-    avalicao[indexgeral] = prompt("Informe o nome do produto.")
+    preco[indexgeral] = prompt("Informe o preço do produto.")
+    avalicao[indexgeral] = prompt("Informe a avaliação do produto (1 a 5 estrelas).")
+    numeroid++
+}
 
-
+function BuscarId(){
+    buscarid = prompt("Qual o id desejado para realizar a busca?")
+    alert("ID: " + id[buscarid - 1] + "\n" + "Nome: " + nome[buscarid - 1] + "\n" + "Preço: " + preco[buscarid - 1] + "\n" + "Avaliação: " + avalicao[buscarid - 1])
 }
