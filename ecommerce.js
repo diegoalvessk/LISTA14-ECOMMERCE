@@ -39,7 +39,8 @@ var numeroid = 1
 var buscarid = 0
 var buscarnome = 0
 var idnome = 0
-
+var desejar = 0
+var condicao = "s"
 
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
@@ -50,6 +51,7 @@ function Cadastrar(){
     numeroid++
     indexgeral++
 }
+
 function BuscarId(){
     buscarid = prompt("Qual o id desejado para realizar a busca?")
     alert("ID: " + id[buscarid - 1] + "\n" + "Nome: " + nome[buscarid - 1] + "\n" + "Preço: " + preco[buscarid - 1] + "\n" + "Avaliação: " + avalicao[buscarid - 1])
@@ -57,7 +59,6 @@ function BuscarId(){
 
 function BuscarNome(){
     buscarnome = prompt("Qual o nome desejado para realizar a busca?")
-
     for (let index = 0; index < indexgeral; index++) {
         if(buscarnome ==  nome[index]){
             idnome = index + 1
@@ -65,4 +66,27 @@ function BuscarNome(){
     }
 
     alert("ID do produto digitado: " + idnome + "\n" + "Produto digitado: " + buscarnome)
+}
+
+function ExibirProdutosId(){
+    for (let index2 = 0; index2 < indexgeral; index2++) {
+        alert("ID: " + id[index2] + "\n" + "Nome: " + nome[index2] + "\n" + "Preço: " + preco[index2] + "\n" + "Avaliação: " + avalicao[index2])
+    }
+}
+
+
+while(condicao == "s"){
+    desejar = parseInt(prompt("O que você deseja fazer?" + "\n" + "1 = Cadastrar produto." + "\n" + "2 = Buscar produto por id." + "\n" + "3 = Buscar produto por nome." + "\n" + "4 = Exibir produto ordenado por Id." + "\n" + "5 = Exibir produto ordenado por preço." + "\n" + "6 = Exibir prodruto ordenado por avaliação."))
+        if(desejar == "1"){
+            Cadastrar()
+        }
+        if(desejar == "2"){
+            BuscarId()
+        }
+        if(desejar == "3"){
+            BuscarNome()
+        }
+        if(desejar == "4"){
+            ExibirProdutosId()
+        }
 }
