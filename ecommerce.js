@@ -59,7 +59,7 @@ function Cadastrar(){
 
 function BuscarId(){
     buscarid = prompt("Qual o id desejado para realizar a busca?")
-    alert("ID: " + id[buscarid - 1] + "\n" + "Nome: " + nome[buscarid - 1] + "\n" + "Preço: " + preco[buscarid - 1] + "\n" + "Avaliação: " + avalicao[buscarid - 1])
+    console.log("ID: " + id[buscarid - 1] + "\t" + "Nome: " + nome[buscarid - 1] + "\t" + "Preço: " + preco[buscarid - 1] + "\t" + "Avaliação: " + avalicao[buscarid - 1])
 }
 
 function BuscarNome(){
@@ -70,12 +70,12 @@ function BuscarNome(){
         }       
     }
 
-    alert("ID do produto digitado: " + idnome + "\n" + "Produto digitado: " + buscarnome)
+    console.log("ID do produto digitado: " + idnome + "\t" + "Produto digitado: " + buscarnome)
 }
 
 function ExibirProdutosId(){
     for (let index2 = 0; index2 < indexgeral; index2++) {
-        alert("ID: " + id[index2] + "\n" + "Nome: " + nome[index2] + "\n" + "Preço: " + preco[index2] + "\n" + "Avaliação: " + avalicao[index2])
+        console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avalicao[index2])
     }
 }
 
@@ -107,7 +107,40 @@ function ExibirProdutosPreco(){
 
 
   for (let index2 = 0; index2 < indexgeral; index2++) {
-    alert("ID: " + id2[index2] + "\n" + "Nome: " + nome2[index2] + "\n" + "Preço: " + preco2[index2] + "\n" + "Avaliação: " + avalicao2[index2])    
+    console.log("ID: " + id2[index2] + "\t" + "Nome: " + nome2[index2] + "\t" + "Preço: " + preco2[index2] + "\t" + "Avaliação: " + avalicao2[index2])    
+    }
+
+}
+
+function ExibirProdutosAvaliacao(){
+    id2 = id
+    nome2 = nome
+    preco2 = preco
+    avalicao2 = avalicao
+  for(let index = 0; index < indexgeral; index++) {
+    for (let index2 = 0; index2 < indexgeral; index2++) {
+        if(avalicao2[index] > avalicao2[index2]){
+            precoSuporte[index2] = preco2[index2]
+            nomeSuporte[index2] = nome2[index2]
+            idSuporte[index2] = id2[index2]
+            avaliacaoSuporte[index2] = avalicao2[index2]
+
+            preco2[index2] = preco2[index]
+            nome2[index2] = nome2[index]
+            id2[index2] = id2[index]
+            avalicao2[index2] = avalicao2[index]
+
+            preco2[index] = precoSuporte[index2]
+            nome2[index] = nomeSuporte[index2]
+            id2[index] = idSuporte[index2]
+            avalicao2[index] = avaliacaoSuporte[index2]
+        }
+    }
+  }
+
+
+  for (let index2 = 0; index2 < indexgeral; index2++) {
+    console.log("ID: " + id2[index2] + "\t" + "Nome: " + nome2[index2] + "\t" + "Preço: " + preco2[index2] + "\t" + "Avaliação: " + avalicao2[index2])    
     }
 
 }
@@ -130,4 +163,9 @@ while(condicao == "s"){
         if(desejar == "5"){
             ExibirProdutosPreco()
         }
+        if(desejar == "6"){
+            ExibirProdutosAvaliacao()
+        }
+
+        condicao = prompt("Deseja continuar fazendo operações? s = sim e n = não")
 }
