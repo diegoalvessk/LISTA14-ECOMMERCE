@@ -45,6 +45,8 @@ var precoSuporte = []
 var idSuporte = []
 var nomeSuporte = []
 var avaliacaoSuporte = []
+var novoPreco = 0
+var novoPrecoId = 0
 
 
 function Cadastrar(){
@@ -74,7 +76,7 @@ function BuscarNome(){
 }
 
 function ExibirProdutosId(){
-    for (let index2 = 0; index2 < indexgeral; index2++) {
+    for (let index2 = indexgeral - 1; index2 >= 0; index2--) {
         console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avalicao[index2])
     }
 }
@@ -112,6 +114,7 @@ function ExibirProdutosPreco(){
 
 }
 
+
 function ExibirProdutosAvaliacao(){
     id2 = id
     nome2 = nome
@@ -145,9 +148,23 @@ function ExibirProdutosAvaliacao(){
 
 }
 
+function AtualizarPrecoProduto(){
+    novoPrecoId = parseInt(prompt("Informe o ID do produto que deseja alterar o preço."))
+    novoPreco = parseInt(prompt("Informe o novo preço do produto que deseja alterar."))
+    preco2[novoPrecoId - 1] = novoPreco
+    preco[novoPrecoId - 1] = novoPreco
+}
+
 
 while(condicao == "s"){
-    desejar = parseInt(prompt("O que você deseja fazer?" + "\n" + "1 = Cadastrar produto." + "\n" + "2 = Buscar produto por id." + "\n" + "3 = Buscar produto por nome." + "\n" + "4 = Exibir produto ordenado por Id." + "\n" + "5 = Exibir produto ordenado por preço." + "\n" + "6 = Exibir prodruto ordenado por avaliação."))
+    desejar = parseInt(prompt("O que você deseja fazer?" + "\n" 
+    + "1 = Cadastrar produto." + "\n" + "2 = Buscar produto por id." + "\n" 
+    + "3 = Buscar produto por nome." + "\n" 
+    + "4 = Exibir produto ordenado por Id." + "\n" 
+    + "5 = Exibir produto ordenado por preço." + "\n" 
+    + "6 = Exibir prodruto ordenado por avaliação." + "\n"
+    + "7 = Atualizar preço de um produto."))
+
         if(desejar == "1"){
             Cadastrar()
         }
@@ -165,6 +182,9 @@ while(condicao == "s"){
         }
         if(desejar == "6"){
             ExibirProdutosAvaliacao()
+        }
+        if(desejar == "7"){
+            AtualizarPrecoProduto()
         }
 
         condicao = prompt("Deseja continuar fazendo operações? s = sim e n = não")
