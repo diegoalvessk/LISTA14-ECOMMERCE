@@ -176,26 +176,6 @@ function AtualizarPrecoProduto(){
 
 function ExcluirProduto(){
 
-    for(let index = 0; index < indexgeral; index++) {
-        for (let index2 = 0; index2 < indexgeral; index2++) {
-            if(id[index] < id[index2]){
-                precoSuporte[index2] = preco[index2]
-                nomeSuporte[index2] = nome[index2]
-                idSuporte[index2] = id[index2]
-                avaliacaoSuporte[index2] = avaliacao[index2]
-    
-                preco[index2] = preco[index]
-                nome[index2] = nome[index]
-                id[index2] = id[index]
-                avaliacao[index2] = avaliacao[index]
-    
-                preco[index] = precoSuporte[index2]
-                nome[index] = nomeSuporte[index2]
-                id[index] = idSuporte[index2]
-                avaliacao[index] = avaliacaoSuporte[index2]
-            }
-        }
-      }
 
 }
 
