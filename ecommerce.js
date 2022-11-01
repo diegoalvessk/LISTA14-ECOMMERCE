@@ -309,40 +309,38 @@ function SistemaDeCadastro(){
     }
 
     function ExcluirProduto(nomeProduto, quantidadeProduto){
-        
+        nomesProdutosSup = []
+        quantidadesProdutosSup = []
+
         for (let index = 0; index < nomesProdutos.length; index++) {
             if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] == quantidadeProduto){
                 nomesProdutos[index] = 0
                 quantidadesProdutos[index] = 0
                 alert("Produto excluido com sucesso")
-                for (let index2 = 0; index2 < id.length; index2++) {
-                    if(nomesProdutos[index2] != 0 && quantidadesProdutos[index2] != 0){
-                        nomesProdutosSup[indexProdutosSup] = nomesProdutos[index2]
-                        quantidadesProdutosSup[indexProdutosSup] = quantidadesProdutos[index2]
-                        indexProdutosSup++
-                    }        
-                }
-            }   
-            
-            if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] > quantidadeProduto){
-                quantidadesProdutos[index] = quantidadesProdutos[index] - quantidadeProduto
-            }    
 
-            if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] < quantidadeProduto){
+            }   else if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] > quantidadeProduto){
+                quantidadesProdutos[index] = quantidadesProdutos[index] - quantidadeProduto
+
+            }   else if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] < quantidadeProduto){
                 nomesProdutos[index] = 0
                 quantidadesProdutos[index] = 0
                 alert("Produto excluido com sucesso")
-                for (let index2 = 0; index2 < id.length; index2++) {
-                    if(nomesProdutos[index2] != 0){
-                        nomesProdutosSup[indexProdutosSup] = nomesProdutos[index2]
-                        quantidadesProdutosSup[indexProdutosSup] = quantidadesProdutos[index2]
-                        indexProdutosSup++
-                    }        
-                }
             }  
 
         }
+        
+            for (let index2 = 0; index2 < nomesProdutos.length; index2++) {
+                if(nomesProdutos[index2] != 0 && quantidadesProdutos[index2] != 0){
+                    nomesProdutosSup[indexProdutosSup] = nomesProdutos[index2]
+                    quantidadesProdutosSup[indexProdutosSup] = quantidadesProdutos[index2]
+                    indexProdutosSup++
+                }        
+            }
 
+        console.log(nomesProdutosSup)
+        console.log(quantidadesProdutosSup)
+
+        indexCarrinho--
         indexProdutosSup = 0
         nomesProdutos = nomesProdutosSup
         quantidadesProdutos = quantidadesProdutosSup
