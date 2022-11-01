@@ -269,7 +269,7 @@ function SistemaDeCadastro(){
                     InformarValorTotal()
                 }
                 if(desejar == "4"){
-                   
+                    ListarProdutosCarrinhoValor()
                 }
 
                 condicao = prompt("Deseja continuar no Carrinho de compras? s = sim e n = não")
@@ -358,6 +358,26 @@ function SistemaDeCadastro(){
             }
         }
         alert("O valor total do seu carrinho é de: R$" + valorTotal + ",00.")
+    }
+
+    function ListarProdutosCarrinhoValor(){
+        var valorTotal = 0
+        var precosCarrinho = []
+        var indexPrecoCarrinho = 0
+        for (let index = 0; index < nomesProdutos.length; index++) {
+            for (let index2 = 0; index2 < nome.length; index2++) {
+                if(nomesProdutos[index] == nome[index2]){
+                    valorTotal = valorTotal + (preco[index2] * quantidadesProdutos[index])
+                    precosCarrinho[indexPrecoCarrinho] = preco[index2]
+                    indexPrecoCarrinho++
+                }
+            }
+        }
+
+        for (let index = 0; index < nomesProdutos.length; index++) {
+            console.log("Produto: " + nomesProdutos[index] + ". Quantidade: " + quantidadesProdutos[index] + ". O valor desse produto é: " + precosCarrinho[index])            
+        }
+            console.log("O valor total do seu carrinho é: " + valorTotal)
     }
 
 
