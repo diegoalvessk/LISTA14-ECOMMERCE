@@ -266,7 +266,7 @@ function SistemaDeCadastro(){
                     ExcluirProduto(nomeProduto, quantidadeProduto)
                 }
                 if(desejar == "3"){
-                    
+                    InformarValorTotal()
                 }
                 if(desejar == "4"){
                    
@@ -347,6 +347,19 @@ function SistemaDeCadastro(){
         nomesProdutos = nomesProdutosSup
         quantidadesProdutos = quantidadesProdutosSup
     }
+
+    function InformarValorTotal(){  
+    var valorTotal = 0
+        for (let index = 0; index < nomesProdutos.length; index++) {
+            for (let index2 = 0; index2 < nome.length; index2++) {
+                if(nomesProdutos[index] == nome[index2]){
+                    valorTotal = valorTotal + (preco[index2] * quantidadesProdutos[index])
+                }
+            }
+        }
+        alert("O valor total do seu carrinho é de: R$" + valorTotal + ",00.")
+    }
+
 
     while(condicaoTotal == "s"){
         desejarTotal = prompt("O que você deseja no nosso sistema?" + "\n" 
