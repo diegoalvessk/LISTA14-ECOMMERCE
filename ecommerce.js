@@ -28,6 +28,9 @@ var nomeProduto = ""
 var quantidadeProduto = 0 
 var nomesProdutos = []
 var quantidadesProdutos = [] 
+var nomesProdutosSup = []
+var quantidadesProdutosSup = [] 
+var indexProdutosSup = 0
 var indexCarrinho = 0
 
 
@@ -258,7 +261,9 @@ function SistemaDeCadastro(){
                     AdicionarProduto(nomeProduto, quantidadeProduto)
                 }
                 if(desejar == "2"){
-                   
+                    nomeProduto = prompt("Informe o nome do produto que excluir.")
+                    quantidadeProduto = parseInt(prompt("Informe a quantidade que deseja excluir."))
+                    ExcluirProduto(nomeProduto, quantidadeProduto)
                 }
                 if(desejar == "3"){
                     
@@ -283,8 +288,6 @@ function SistemaDeCadastro(){
             }
         }  
 
-
-
         while(contador == 0){
             for (let index = 0; index < nome.length; index++) {
                 if(nomeProduto == nome[index]){
@@ -303,6 +306,46 @@ function SistemaDeCadastro(){
 
         console.log(nomesProdutos)
         console.log(quantidadesProdutos)
+    }
+
+    function ExcluirProduto(nomeProduto, quantidadeProduto){
+        
+        for (let index = 0; index < nomesProdutos.length; index++) {
+            if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] == quantidadeProduto){
+                nomesProdutos[index] = 0
+                quantidadesProdutos[index] = 0
+                alert("Produto excluido com sucesso")
+                for (let index2 = 0; index2 < id.length; index2++) {
+                    if(nomesProdutos[index2] != 0 && quantidadesProdutos[index2] != 0){
+                        nomesProdutosSup[indexProdutosSup] = nomesProdutos[index2]
+                        quantidadesProdutosSup[indexProdutosSup] = quantidadesProdutos[index2]
+                        indexProdutosSup++
+                    }        
+                }
+            }   
+            
+            if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] > quantidadeProduto){
+                quantidadesProdutos[index] = quantidadesProdutos[index] - quantidadeProduto
+            }    
+
+            if(nomeProduto == nomesProdutos[index] && quantidadesProdutos[index] < quantidadeProduto){
+                nomesProdutos[index] = 0
+                quantidadesProdutos[index] = 0
+                alert("Produto excluido com sucesso")
+                for (let index2 = 0; index2 < id.length; index2++) {
+                    if(nomesProdutos[index2] != 0){
+                        nomesProdutosSup[indexProdutosSup] = nomesProdutos[index2]
+                        quantidadesProdutosSup[indexProdutosSup] = quantidadesProdutos[index2]
+                        indexProdutosSup++
+                    }        
+                }
+            }  
+
+        }
+
+        indexProdutosSup = 0
+        nomesProdutos = nomesProdutosSup
+        quantidadesProdutos = quantidadesProdutosSup
     }
 
     while(condicaoTotal == "s"){
