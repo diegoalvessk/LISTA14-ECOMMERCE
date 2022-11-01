@@ -29,12 +29,13 @@ usuário possa escolher qual função executar e quando encerrar o programa
 var id = []
 var nome = []
 var preco = []
-var avalicao = []
-var id2 = []
-var nome2 = []
-var preco2 = []
-var avalicao2 = []
+var avaliacao = []
+var id3 = []
+var nome3 = []
+var preco3 = []
+var avaliacao3 = []
 var indexgeral = 0
+var indexsuporte = 0
 var numeroid = 1
 var buscarid = 0
 var buscarnome = 0
@@ -47,21 +48,22 @@ var nomeSuporte = []
 var avaliacaoSuporte = []
 var novoPreco = 0
 var novoPrecoId = 0
-
+var idRemover = 0
+var index2 = 0
 
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
     id[indexgeral] = numeroid
     nome[indexgeral] = prompt("Informe o nome do produto.")
     preco[indexgeral] = prompt("Informe o preço do produto.")
-    avalicao[indexgeral] = prompt("Informe a avaliação do produto (1 a 5 estrelas).")
+    avaliacao[indexgeral] = prompt("Informe a avaliação do produto (1 a 5 estrelas).")
     numeroid++
     indexgeral++
 }
 
 function BuscarId(){
     buscarid = prompt("Qual o id desejado para realizar a busca?")
-    console.log("ID: " + id[buscarid - 1] + "\t" + "Nome: " + nome[buscarid - 1] + "\t" + "Preço: " + preco[buscarid - 1] + "\t" + "Avaliação: " + avalicao[buscarid - 1])
+    console.log("ID: " + id[buscarid - 1] + "\t" + "Nome: " + nome[buscarid - 1] + "\t" + "Preço: " + preco[buscarid - 1] + "\t" + "Avaliação: " + avaliacao[buscarid - 1])
 }
 
 function BuscarNome(){
@@ -76,74 +78,92 @@ function BuscarNome(){
 }
 
 function ExibirProdutosId(){
-    for (let index2 = indexgeral - 1; index2 >= 0; index2--) {
-        console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avalicao[index2])
+    for(let index = 0; index < indexgeral; index++) {
+        for (let index2 = 0; index2 < indexgeral; index2++) {
+            if(id[index] > id[index2]){
+                precoSuporte[index2] = preco[index2]
+                nomeSuporte[index2] = nome[index2]
+                idSuporte[index2] = id[index2]
+                avaliacaoSuporte[index2] = avaliacao[index2]
+    
+                preco[index2] = preco[index]
+                nome[index2] = nome[index]
+                id[index2] = id[index]
+                avaliacao[index2] = avaliacao[index]
+    
+                preco[index] = precoSuporte[index2]
+                nome[index] = nomeSuporte[index2]
+                id[index] = idSuporte[index2]
+                avaliacao[index] = avaliacaoSuporte[index2]
+            }
+        }
+      }
+
+    for (let index2 = 0; index2 < indexgeral; index2++) {
+        console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avaliacao[index2])    
     }
+    
 }
 
 function ExibirProdutosPreco(){
-    id2 = id
-    nome2 = nome
-    preco2 = preco
-    avalicao2 = avalicao
+    id = id
+    nome = nome
+    preco = preco
+    avaliacao = avaliacao
   for(let index = 0; index < indexgeral; index++) {
     for (let index2 = 0; index2 < indexgeral; index2++) {
-        if(preco2[index] > preco2[index2]){
-            precoSuporte[index2] = preco2[index2]
-            nomeSuporte[index2] = nome2[index2]
-            idSuporte[index2] = id2[index2]
-            avaliacaoSuporte[index2] = avalicao2[index2]
+        if(preco[index] > preco[index2]){
+            precoSuporte[index2] = preco[index2]
+            nomeSuporte[index2] = nome[index2]
+            idSuporte[index2] = id[index2]
+            avaliacaoSuporte[index2] = avaliacao[index2]
 
-            preco2[index2] = preco2[index]
-            nome2[index2] = nome2[index]
-            id2[index2] = id2[index]
-            avalicao2[index2] = avalicao2[index]
+            preco[index2] = preco[index]
+            nome[index2] = nome[index]
+            id[index2] = id[index]
+            avaliacao[index2] = avaliacao[index]
 
-            preco2[index] = precoSuporte[index2]
-            nome2[index] = nomeSuporte[index2]
-            id2[index] = idSuporte[index2]
-            avalicao2[index] = avaliacaoSuporte[index2]
+            preco[index] = precoSuporte[index2]
+            nome[index] = nomeSuporte[index2]
+            id[index] = idSuporte[index2]
+            avaliacao[index] = avaliacaoSuporte[index2]
         }
     }
   }
 
 
   for (let index2 = 0; index2 < indexgeral; index2++) {
-    console.log("ID: " + id2[index2] + "\t" + "Nome: " + nome2[index2] + "\t" + "Preço: " + preco2[index2] + "\t" + "Avaliação: " + avalicao2[index2])    
+    console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avaliacao[index2])    
     }
 
 }
 
 
 function ExibirProdutosAvaliacao(){
-    id2 = id
-    nome2 = nome
-    preco2 = preco
-    avalicao2 = avalicao
   for(let index = 0; index < indexgeral; index++) {
     for (let index2 = 0; index2 < indexgeral; index2++) {
-        if(avalicao2[index] > avalicao2[index2]){
-            precoSuporte[index2] = preco2[index2]
-            nomeSuporte[index2] = nome2[index2]
-            idSuporte[index2] = id2[index2]
-            avaliacaoSuporte[index2] = avalicao2[index2]
+        if(avaliacao[index] > avaliacao[index2]){
+            precoSuporte[index2] = preco[index2]
+            nomeSuporte[index2] = nome[index2]
+            idSuporte[index2] = id[index2]
+            avaliacaoSuporte[index2] = avaliacao[index2]
 
-            preco2[index2] = preco2[index]
-            nome2[index2] = nome2[index]
-            id2[index2] = id2[index]
-            avalicao2[index2] = avalicao2[index]
+            preco[index2] = preco[index]
+            nome[index2] = nome[index]
+            id[index2] = id[index]
+            avaliacao[index2] = avaliacao[index]
 
-            preco2[index] = precoSuporte[index2]
-            nome2[index] = nomeSuporte[index2]
-            id2[index] = idSuporte[index2]
-            avalicao2[index] = avaliacaoSuporte[index2]
+            preco[index] = precoSuporte[index2]
+            nome[index] = nomeSuporte[index2]
+            id[index] = idSuporte[index2]
+            avaliacao[index] = avaliacaoSuporte[index2]
         }
     }
   }
 
 
   for (let index2 = 0; index2 < indexgeral; index2++) {
-    console.log("ID: " + id2[index2] + "\t" + "Nome: " + nome2[index2] + "\t" + "Preço: " + preco2[index2] + "\t" + "Avaliação: " + avalicao2[index2])    
+    console.log("ID: " + id[index2] + "\t" + "Nome: " + nome[index2] + "\t" + "Preço: " + preco[index2] + "\t" + "Avaliação: " + avaliacao[index2])    
     }
 
 }
@@ -151,8 +171,32 @@ function ExibirProdutosAvaliacao(){
 function AtualizarPrecoProduto(){
     novoPrecoId = parseInt(prompt("Informe o ID do produto que deseja alterar o preço."))
     novoPreco = parseInt(prompt("Informe o novo preço do produto que deseja alterar."))
-    preco2[novoPrecoId - 1] = novoPreco
     preco[novoPrecoId - 1] = novoPreco
+}
+
+function ExcluirProduto(){
+
+    for(let index = 0; index < indexgeral; index++) {
+        for (let index2 = 0; index2 < indexgeral; index2++) {
+            if(id[index] < id[index2]){
+                precoSuporte[index2] = preco[index2]
+                nomeSuporte[index2] = nome[index2]
+                idSuporte[index2] = id[index2]
+                avaliacaoSuporte[index2] = avaliacao[index2]
+    
+                preco[index2] = preco[index]
+                nome[index2] = nome[index]
+                id[index2] = id[index]
+                avaliacao[index2] = avaliacao[index]
+    
+                preco[index] = precoSuporte[index2]
+                nome[index] = nomeSuporte[index2]
+                id[index] = idSuporte[index2]
+                avaliacao[index] = avaliacaoSuporte[index2]
+            }
+        }
+      }
+
 }
 
 
@@ -163,7 +207,8 @@ while(condicao == "s"){
     + "4 = Exibir produto ordenado por Id." + "\n" 
     + "5 = Exibir produto ordenado por preço." + "\n" 
     + "6 = Exibir prodruto ordenado por avaliação." + "\n"
-    + "7 = Atualizar preço de um produto."))
+    + "7 = Atualizar preço de um produto." + "\n" 
+    + "8 = Excluir um produto."))
 
         if(desejar == "1"){
             Cadastrar()
@@ -185,6 +230,9 @@ while(condicao == "s"){
         }
         if(desejar == "7"){
             AtualizarPrecoProduto()
+        }
+        if(desejar == "8"){
+            ExcluirProduto()
         }
 
         condicao = prompt("Deseja continuar fazendo operações? s = sim e n = não")
