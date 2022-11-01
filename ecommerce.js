@@ -1,31 +1,3 @@
-/*
-Você deve criar funções para:
-
-1. Cadastrar um produto. Um produto deve ter um id, nome, preço e avaliação;
-
-2. Buscar um produto por id, ou seja, passar o id como parâmetro e exibir as
-informações do produto correspondente;
-
-3. Buscar um produto pelo nome e retornar o id dele;
-E.: Entrada = Mouse Médio
-Retorno = 2
-
-4. Exibir todos os produtos ordenados pelo id;
-
-5. Exibir os produtos ordenados pelo preço;
-
-6. Exibir os produtos ordenados pela avaliação;
-
-7. Atualizar o preço de um produto, para isso deve receber o id do produto como
-parâmetro e o novo valor para atualizar;
-Ex.: Id = 3, Valor = 200
-
-8. Deletar um produto, não esqueça de organizar as informações para que não fique
-espaços vazios;
-Por fim, utilizando as funções criadas organize a execução do seu código, faça com que o
-usuário possa escolher qual função executar e quando encerrar o programa
-*/
-
 var id = []
 var nome = []
 var preco = []
@@ -50,6 +22,15 @@ var novoPreco = 0
 var novoPrecoId = 0
 var idRemover = 0
 var indexsup = 0
+var condicaoTotal = "s"
+var desejarTotal = " "
+var nomeProduto = ""
+var quantidadeProduto = 0 
+var nomesProdutos = []
+var quantidadesProdutos = [] 
+var indexCarrinho = 0
+
+
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
     id[indexgeral] = numeroid
@@ -264,11 +245,65 @@ function SistemaDeCadastro(){
     } 
 
     function CarrinhoDeVendas(){
+        while(condicao == "s"){
+            desejar = parseInt(prompt("O que você deseja fazer?" + "\n" 
+            + "1 = Adicionar produto no carrinho." + "\n" 
+            + "2 = Excluir produto do carrinho." + "\n" 
+            + "3 = Valor total dos produtos." + "\n" 
+            + "4 = Listar produtos do carrinho e o valor total."))
 
+                if(desejar == "1"){
+                    nomeProduto = prompt("Informe o nome do produto que deseja adicionar ao carrinho.")
+                    quantidadeProduto = parseInt(prompt("Informe a quantidade do produto que deseja adicionar ao carrinho."))
+                    AdicionarProduto(nomeProduto, quantidadeProduto)
+                }
+                if(desejar == "2"){
+                   
+                }
+                if(desejar == "3"){
+                    
+                }
+                if(desejar == "4"){
+                   
+                }
+
+                condicao = prompt("Deseja continuar no Carrinho de compras? s = sim e n = não")
+        }
     }
 
-    var condicaoTotal = "s"
-    var desejarTotal = " "
+    function AdicionarProduto(nomeProduto, quantidadeProduto){
+        var contador = 0
+        var cont = 0
+
+        for (let index5 = 0; index5 < nomesProdutos.length; index5++){
+            if(nomeProduto == nomesProdutos[index5]){
+                quantidadesProdutos[index5] = quantidadesProdutos[index5] + quantidadeProduto
+                alert("Quantidade adicionada com sucesso")
+                contador++
+            }
+        }  
+
+
+
+        while(contador == 0){
+            for (let index = 0; index < nome.length; index++) {
+                if(nomeProduto == nome[index]){
+                    nomesProdutos[indexCarrinho] = nomeProduto
+                    quantidadesProdutos[indexCarrinho] = quantidadeProduto
+                    indexCarrinho++            
+                    alert("Produto cadastrado com sucesso")
+                    cont++
+                }
+            }
+            if(cont == 0){
+                alert("Não existe nenhum produto com esse nome, por favor se certifique que o nome digitado está correto.")
+            }
+            contador++
+        }
+
+        console.log(nomesProdutos)
+        console.log(quantidadesProdutos)
+    }
 
     while(condicaoTotal == "s"){
         desejarTotal = prompt("O que você deseja no nosso sistema?" + "\n" 
