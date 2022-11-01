@@ -49,8 +49,7 @@ var avaliacaoSuporte = []
 var novoPreco = 0
 var novoPrecoId = 0
 var idRemover = 0
-var index2 = 0
-
+var indexsup = 0
 function Cadastrar(){
     alert("Aqui será o local onde você irá cadastrar o seu produto. Vamos começar!")
     id[indexgeral] = numeroid
@@ -62,6 +61,27 @@ function Cadastrar(){
 }
 
 function BuscarId(){
+    for(let index = 0; index < indexgeral; index++) {
+        for (let index2 = 0; index2 < indexgeral; index2++) {
+            if(id[index] < id[index2]){
+                precoSuporte[index2] = preco[index2]
+                nomeSuporte[index2] = nome[index2]
+                idSuporte[index2] = id[index2]
+                avaliacaoSuporte[index2] = avaliacao[index2]
+    
+                preco[index2] = preco[index]
+                nome[index2] = nome[index]
+                id[index2] = id[index]
+                avaliacao[index2] = avaliacao[index]
+    
+                preco[index] = precoSuporte[index2]
+                nome[index] = nomeSuporte[index2]
+                id[index] = idSuporte[index2]
+                avaliacao[index] = avaliacaoSuporte[index2]
+            }
+        }
+      }
+
     buscarid = prompt("Qual o id desejado para realizar a busca?")
     console.log("ID: " + id[buscarid - 1] + "\t" + "Nome: " + nome[buscarid - 1] + "\t" + "Preço: " + preco[buscarid - 1] + "\t" + "Avaliação: " + avaliacao[buscarid - 1])
 }
@@ -175,45 +195,96 @@ function AtualizarPrecoProduto(){
 }
 
 function ExcluirProduto(){
+    idRemover = parseInt(prompt("Insira o id do produto que deseja excluir."))
+    indexsup = 0
 
+    for (let index = 0; index < id.length; index++) {
+        if(idRemover == id[index]){
+            id[index] = 0
+        }        
+    }
+
+    for (let index2 = 0; index2 < id.length; index2++) {
+        if(id[index2] != 0){
+            id3[indexsup] = id[index2]
+            nome3[indexsup] = nome[index2]
+            preco3[indexsup] = preco[index2]
+            avaliacao3[indexsup] = avaliacao[index2]
+            indexsup++
+        }        
+    }
+
+    id = id3
+    nome = nome3
+    preco = preco3
+    avaliacao = avaliacao3
+    indexsup = 0
+    indexgeral = indexgeral - 1
 
 }
 
+function SistemaDeCadastro(){
+        while(condicao == "s"){
+            desejar = parseInt(prompt("O que você deseja fazer?" + "\n" 
+            + "1 = Cadastrar produto." + "\n" + "2 = Buscar produto por id." + "\n" 
+            + "3 = Buscar produto por nome." + "\n" 
+            + "4 = Exibir produto ordenado por Id." + "\n" 
+            + "5 = Exibir produto ordenado por preço." + "\n" 
+            + "6 = Exibir prodruto ordenado por avaliação." + "\n"
+            + "7 = Atualizar preço de um produto." + "\n" 
+            + "8 = Excluir um produto."))
 
-while(condicao == "s"){
-    desejar = parseInt(prompt("O que você deseja fazer?" + "\n" 
-    + "1 = Cadastrar produto." + "\n" + "2 = Buscar produto por id." + "\n" 
-    + "3 = Buscar produto por nome." + "\n" 
-    + "4 = Exibir produto ordenado por Id." + "\n" 
-    + "5 = Exibir produto ordenado por preço." + "\n" 
-    + "6 = Exibir prodruto ordenado por avaliação." + "\n"
-    + "7 = Atualizar preço de um produto." + "\n" 
-    + "8 = Excluir um produto."))
+                if(desejar == "1"){
+                    Cadastrar()
+                }
+                if(desejar == "2"){
+                    BuscarId()
+                }
+                if(desejar == "3"){
+                    BuscarNome()
+                }
+                if(desejar == "4"){
+                    ExibirProdutosId()
+                }
+                if(desejar == "5"){
+                    ExibirProdutosPreco()
+                }
+                if(desejar == "6"){
+                    ExibirProdutosAvaliacao()
+                }
+                if(desejar == "7"){
+                    AtualizarPrecoProduto()
+                }
+                if(desejar == "8"){
+                    ExcluirProduto()
+                }
 
-        if(desejar == "1"){
-            Cadastrar()
+                condicao = prompt("Deseja continuar no sistema de vendas? s = sim e n = não")
         }
-        if(desejar == "2"){
-            BuscarId()
+    } 
+
+    function CarrinhoDeVendas(){
+
+    }
+
+    var condicaoTotal = "s"
+    var desejarTotal = " "
+
+    while(condicaoTotal == "s"){
+        desejarTotal = prompt("O que você deseja no nosso sistema?" + "\n" 
+        + "1 = Sistema de cadastro" + "\n" 
+        + "2 = Carrinho de compras" + "\n" 
+        + "3 = Finalizar procedimentos")
+
+        if(desejarTotal == "1"){
+            SistemaDeCadastro()
+            condicao = "s"
         }
-        if(desejar == "3"){
-            BuscarNome()
+        if(desejarTotal == "2"){
+            CarrinhoDeVendas()
         }
-        if(desejar == "4"){
-            ExibirProdutosId()
-        }
-        if(desejar == "5"){
-            ExibirProdutosPreco()
-        }
-        if(desejar == "6"){
-            ExibirProdutosAvaliacao()
-        }
-        if(desejar == "7"){
-            AtualizarPrecoProduto()
-        }
-        if(desejar == "8"){
-            ExcluirProduto()
+        if(desejarTotal == "3"){
+            condicaoTotal = "n"
         }
 
-        condicao = prompt("Deseja continuar fazendo operações? s = sim e n = não")
-}
+    }
